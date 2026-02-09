@@ -17,7 +17,7 @@ let hasConsent = false;
 
 // Check Consent Status on Load
 async function checkConsent() {
-    const res = await fetch('api/consent.php');
+    const res = await fetch('http://localhost:8000/api/consent');
     const data = await res.json();
     if (data.accepted) {
         hasConsent = true;
@@ -28,7 +28,7 @@ async function checkConsent() {
 }
 
 acceptConsentBtn.onclick = async () => {
-    const res = await fetch('api/consent.php', { method: 'POST' });
+    const res = await fetch('http://localhost:8000/api/consent', { method: 'POST' });
     const data = await res.json();
     if (data.success) {
         hasConsent = true;
@@ -171,7 +171,7 @@ async function handleImage(file) {
   console.log(`Processing image. isOnline: ${isOnline}, isDemoMode: ${isDemoMode}`);
 
   try {
-    const response = await fetch("api/process.php", {
+    const response = await fetch("http://localhost:8000/api/process", {
       method: "POST",
       body: formData,
     });
@@ -216,7 +216,7 @@ async function processOfflineQueue() {
 
 async function loadHistory() {
     try {
-        const response = await fetch('api/history.php');
+        const response = await fetch('http://localhost:8000/api/history');
         const data = await response.json();
         
         if (data.success && data.history.length > 0) {

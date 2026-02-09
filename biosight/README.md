@@ -1,54 +1,28 @@
-# 🩺 BioSight AI — Intelligent Biomedical Image Interpreter
+# 🩺 BioSight AI — Intelligent Biomedical Interpreter
 
-This repository contains original code authored by christopher and is licensed under the MIT License.
+**BioSight AI** is a research tool utilizing **Gemini 1.5 Flash** to extract visual features from biomedical imagery (X-rays, slides) for educational and preliminary triage support.
 
-This project uses the Gemini 3 API, which is governed by Google’s terms of service.
-The license applies only to the application code and not to third-party services or AI model outputs.
+### 🤖 Gemini 1.5 Integration
 
-**Contest Phase: 0 — Contest-Compliant Project Definition**
+Gemini 1.5 Flash serves as the multimodal reasoning engine. It processes raw visual data to identify morphological patterns, structural anomalies, and density variations. The implementation uses a **Prompt-to-Observation** pipeline:
 
-**BioSight AI** is a premium, research-focused web application designed to assist biomedical researchers and students in analyzing complex imagery (X-rays, microscopic slides) using the power of **Gemini 1.5 Multimodal AI**.
+1. **Input**: Sanitized image bytes.
+2. **Reasoning**: Gemini extracts visual markers based on medical vision prompts.
+3. **Output**: Structured JSON containing observational summaries and analyzer confidence scores.
+   _Note: The system identifies visual patterns only and does not provide clinical diagnoses._
 
-## 🏆 Contest Compliance & Project Scope
+### 🚀 Key Features
 
-This project was conceived and developed entirely within the contest window.
+- **Gemini Multimodal Vision**: High-precision feature extraction.
+- **Privacy-First**: No PII accepted; AES-256 encrypted storage.
+- **Offline Resilience**: IndexedDB vault for specimen queuing.
+- **Judge Dashboard**: Rapid endpoints for health and demo status.
 
-### 🎯 Scope Matrix
+### ⚙️ Quick Start
 
-| Feature                | Status          | Specification                                                           |
-| :--------------------- | :-------------- | :---------------------------------------------------------------------- |
-| **Biomedical Vision**  | ✅ In-Scope     | Visual pattern extraction, texture density, and morphological analysis. |
-| **Gemini Integration** | ✅ In-Scope     | Real-time multimodal interpretation (Gemini 1.5).                       |
-| **Offline Resilience** | ✅ In-Scope     | IndexedDB "Vault" for specimen queuing.                                 |
-| **Diagnosis**          | ❌ Out-of-Scope | **MANDATORY:** The system never claims to diagnose or treat disease.    |
-| **Clinical Decision**  | ❌ Out-of-Scope | No treatment, dosage, or surgical recommendations.                      |
-
-### 🛡️ Medical Safety Boundaries
-
-- **Zero-Diagnosis Protocol**: forbidden from utilizing clinical diagnostic terminology.
-- **Structural Language**: Findings are restricted to observational characteristics (e.g., _"Structural Discontinuity"_ vs _"Fracture"_).
-- **Human-in-the-Loop**: Positioned as a **Research Assistant Tool**, requiring validation by board-certified professionals.
-
-### 🔐 Privacy-First Data Rules
-
-- **Zero-PII Storage**: No Name, DOB, or Patient IDs are accepted/stored.
-- **Metadata Stripping**: Python backend sanitizes EXIF/DICOM data before AI processing.
-- **Transient Residency (TTL)**: Automatic 24-hour expiration of research records using MySQL event scheduler.
-- **Encryption-at-Rest**: interpretations are AES-256 encrypted at the application layer.
-
-## 🚀 Key Features
-
-- **Multimodal AI Analysis**: Leverages Google Gemini 1.5 to perform high-precision visual feature extraction.
-- **Offline-First Resilience**: Includes a live connectivity monitor and a deferred IndexedDB upload queue.
-- **Professional Reporting**: One-click "Download PDF" with specialized academic print templates.
-- **Education Hub**: Terminologies bridge translated technical findings for non-medical users.
-
-## ⚙️ Installation & Setup
-
-1. **Requirements**: PHP 8.x, MySQL (WAMP/XAMPP), Python 3.10+.
-2. **Env**: Setup `.env` with `GEMINI_API_KEY` and `APP_ENCRYPTION_KEY` (32 chars).
-3. **Database**: Import `sql/schema.sql`.
-4. **Python**: Run `pip install -r api/requirements.txt`.
-5. **Start**: Navigate to the directory in your local server.
+1. **Env**: Set `GEMINI_API_KEY` and `APP_ENCRYPTION_KEY` in `.env`.
+2. **Database**: Import `sql/schema.sql`.
+3. **Python**: `pip install -r api/requirements.txt`
+4. **Run**: `python api/main.py`
 
 _Developed for the 2026 GEMINI 3 Hackathon._
